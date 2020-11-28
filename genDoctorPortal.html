@@ -124,18 +124,175 @@
         </div>
 
         <div class="cont-2-child-2 mt-5">
-            <button class="search-type-btn mr-0">
-                Patients Name  <i class="fa fa-chevron-up ml-3"></i>
+            <button class="search-type-btn mr-0 active">
+                Patient's Name  <i class="fa fa-chevron-up ml-3"></i>
             </button>
 
             <input type="search" class="search-bar ml-0" placeholder="Search">
 
-            <button class="search-filter-btn ml-3">
+            <button class="search-filter-btn ml-3 active">
                 <i class="fa fa-filter"></i>
             </button>
 
         </div>
     </section>
+
+    <!-- HIDDEN SEARCH BUTTON FILTER -->
+    <div class="hidden-search-btn-type-filter">
+        <ul class="hidden-search-btn-list-collection">
+
+            <li class="hidden-search-btn-list-item">
+               <input type="checkbox" class="search-by-name ml-4">
+               <span>Patient's Name</span>
+            </li>
+
+            <li class="hidden-search-btn-list-item">
+                <input type="checkbox" class="search-by-id ml-4"> 
+                <span>Patient's ID</span>
+            </li>
+
+        </ul>
+    </div>
+
+    <!-- HIDDEN FILTER SEARCH BOARD -->
+    <div class="hidden-filter-search-board">
+       <p class="h6 text-secondary reset-filter">
+           CLEAR ALL
+       </p> 
+
+       <div class="field-title">
+            <span class="h4 text-dark font-bold">
+                GENDER
+            </span>
+            <button class="gender-field-btn gender accordion-btn open">
+                <i class="fa fa-chevron-up gender open"></i>
+            </button>
+       </div>
+
+       <ul class="gender-list">
+            <li class="gender-list-item male">
+                <span class="h5 text-dark">
+                    Male
+                </span> 
+                <input type="checkbox" class="male-checkbox my-checkbox mt-1 mr-2"  name="male" id="male-gender">
+            </li>
+
+            <li class="gender-list-item male">
+                <span class="h5 text-dark">
+                    Female
+                </span> 
+                <input type="checkbox" class="female-checkbox my-checkbox mt-1 mr-2"  name="female" id="female-gender">
+            </li>
+       </ul>
+
+
+       <div class="field-title">
+            <span class="h4 text-dark font-bold">
+                AGE
+            </span>
+            <button class="age-field-btn age accordion-btn open">
+                <i class="fa fa-chevron-up age open"></i>
+            </button>
+       </div>
+
+       <ul class="age-list">
+            <li class="age-list-item">
+                <span class="h5 text-dark">
+                    0-12
+                </span> 
+                <input type="checkbox" class="child-checkbox my-checkbox mt-1 mr-2"  name="child" id="child-age">
+            </li>
+
+            <li class="age-list-item">
+                <span class="h5 text-dark">
+                    12-19
+                </span> 
+                <input type="checkbox" class="teenager-checkbox my-checkbox mt-1 mr-2"  name="teenager" id="teenager-age">
+            </li>
+
+            <li class="age-list-item">
+                <span class="h5 text-dark">
+                    20-34
+                </span> 
+                <input type="checkbox" class="young-adult-checkbox my-checkbox mt-1 mr-2"  name="young-adult" id="young-adult-age">
+            </li>
+
+            <li class="age-list-item">
+                <span class="h5 text-dark">
+                    35-49
+                </span> 
+                <input type="checkbox" class="old-adult-checkbox my-checkbox mt-1 mr-2"  name="old-adult-age" id="old-adult-age">
+            </li>
+
+            <li class="age-list-item">
+                <span class="h5 text-dark">
+                    50 and above
+                </span> 
+                <input type="checkbox" class="elder-checkbox my-checkbox mt-1 mr-2"  name="elderly" id="elderly-age">
+            </li>
+       </ul>
+
+       <div class="field-title">
+            <span class="h4 text-dark font-bold">
+                Height
+            </span>
+            <button class="height-field-btn height accordion-btn open">
+                <i class="fa fa-chevron-up height open"></i>
+            </button>
+       </div>
+
+       <ul class="height-list">
+            <li class="height-list-item male">
+                <span class="h5 text-dark">
+                    65.42 - 137.16
+                </span> 
+                <input type="checkbox" class="height-range-1-checkbox my-checkbox mt-1 mr-2"  name="height-range-1" id="height-range-1">
+            </li>
+
+            <li class="height-list-item male">
+                <span class="h5 text-dark">
+                    139.7 - 145.2
+                </span> 
+                <input type="checkbox" class="height-range-2-checkbox my-checkbox mt-1 mr-2"  name="height-range-2" id="height-range-2">
+            </li>
+
+            <li class="height-list-item male">
+                <span class="h5 text-dark">
+                    147.32 - 152.4
+                </span> 
+                <input type="checkbox" class="height-range-3-checkbox my-checkbox mt-1 mr-2"  name="height-range-3" id="height-range-3">
+            </li>
+
+            <li class="height-list-item male">
+                <span class="h5 text-dark">
+                    154.94 - 157.48
+                </span> 
+                <input type="checkbox" class="height-range-4-checkbox my-checkbox mt-1 mr-2"  name="height-range-4" id="height-range-4">
+            </li>
+
+            <li class="height-list-item male">
+                <span class="h5 text-dark">
+                    160.02 - 160.2
+                </span> 
+                <input type="checkbox" class="height-range-5-checkbox my-checkbox mt-1 mr-2"  name="height-range-5" id="height-range-5">
+            </li>
+
+            <li class="height-list-item male">
+                <span class="h5 text-dark">
+                    165.1 - 167.64
+                </span> 
+                <input type="checkbox" class="height-range-6-checkbox my-checkbox mt-1 mr-2"  name="height-range-6" id="height-range-6">
+            </li>
+
+            <li class="height-list-item male">
+                <span class="h5 text-dark">
+                    167.64 - 170.18
+                </span> 
+                <input type="checkbox" class="height-range-7-checkbox my-checkbox mt-1 mr-2"  name="height-range-7" id="height-range-7">
+            </li>
+       </ul>
+
+    </div>
 
     <!-- CODES FOR THE CONTAINER THREE -->
     <section class="cont-3 container">
