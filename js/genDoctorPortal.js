@@ -32,9 +32,15 @@ const UI = (function() {
       genderFieldBtn: '.gender-field-btn',
       ageFieldBtn: '.age-field-btn',
       heightFieldBtn: '.height-field-btn',
+      weightFieldBtn: '.weight-field-btn',
+      bloodFieldBtn: '.blood-field-btn',
+      genotypeFieldBtn: '.genotype-field-btn',
       genderList: '.gender-list',
       ageList: '.age-list',
       heightList: '.height-list',
+      weightList: '.weight-list',
+      bloodList: '.blood-list',
+      genotypelist: '.genotype-list',
     };
 
     // PUBLIC METHOD
@@ -47,6 +53,16 @@ const UI = (function() {
       openAccordion: function(field) {
         if(field === '.gender-list') {
             document.querySelector(field).style.height = `75px`;
+        } else if (field === '.age-list') {
+            document.querySelector(field).style.height = `150px`; 
+        } else if (field === '.height-list') {
+            document.querySelector(field).style.height = `220px`; 
+        } else if (field === '.weight-list') {
+            document.querySelector(field).style.height = `220px`;  
+        } else if (field === '.blood-list') {
+            document.querySelector(field).style.height = `150px`;
+        } else if (field === '.genotype-list') {
+            document.querySelector(field).style.height = `110px`; 
         }
        
       },
@@ -90,23 +106,72 @@ const Controller = (function(UI, Logic, Database) {
         document.querySelector(uiSelectors.filterSearchBtn).addEventListener('click', toggleFilterBoard);
         // LISTNER FOR GENDER FIELD ACCORDION BUTTON
         document.querySelector(uiSelectors.genderFieldBtn).addEventListener('click', toggleGenderField);
-       
+        // LISTNER FOR AGE FIELD ACCORDION BUTTON
+        document.querySelector(uiSelectors.ageFieldBtn).addEventListener('click', toggleAgeField);
+        // LISTNER FOR HEIGHT FIELD ACCORDION BUTTON
+        document.querySelector(uiSelectors.heightFieldBtn).addEventListener('click', toggleHeightField);
+        // LISTNER FOR WEIGHT FIELD ACCORDION BUTTON
+        document.querySelector(uiSelectors.weightFieldBtn).addEventListener('click', toggleWeightField);
+        // LISTNER FOR BLOOD FIELD ACCORDION BUTTON
+        document.querySelector(uiSelectors.bloodFieldBtn).addEventListener('click', toggleBloodField);
+        // LISTNER FOR GENOTYPE FIELD ACCORDION BUTTON
+        document.querySelector(uiSelectors.genotypeFieldBtn).addEventListener('click', toggleGenotypeField);
     };
 
-    // toggleGenderField function
-    const toggleGenderField = function(e) {
-        e.preventDefault();
-        let pin = e.target.classList;
+    // filter field control function
+    const filterFieldControl = function(pin, selector) {
         if(pin.contains('open')) {
-            UI.openAccordion(uiSelectors.genderList);
+            UI.openAccordion(selector);
             pin.remove('open');
         } else {
-            UI.closeAccordion(uiSelectors.genderList);
+            UI.closeAccordion(selector);
             pin.add('open');
         }
     };
 
-    // toggleFilterBoard function
+    // toggle genotype field funtion
+    const toggleGenotypeField = function(e) {
+        e.preventDefault;
+        let pin = e.target.classList;
+        filterFieldControl(pin, uiSelectors.genotypelist);
+    }
+
+    // toggle blood field funtion 
+    const toggleBloodField = function(e) {
+        e.preventDefault();
+        let pin = e.target.classList;
+        filterFieldControl(pin, uiSelectors.bloodList);
+    };
+
+    // toggle weight field function 
+    const toggleWeightField = function(e) {
+        e.preventDefault();
+        let pin = e.target.classList;
+        filterFieldControl(pin, uiSelectors.weightList);
+    };
+
+    // toggle height field function
+    const toggleHeightField = function(e) {
+        e.preventDefault();
+        let pin = e.target.classList;
+        filterFieldControl(pin, uiSelectors.heightList);
+    };
+
+    // toggle Age field function 
+    const toggleAgeField = function(e) {
+        e.preventDefault();
+        let pin = e.target.classList;
+        filterFieldControl(pin, uiSelectors.ageList);
+    };
+
+    // toggle Gender Field function
+    const toggleGenderField = function(e) {
+        e.preventDefault();
+        let pin = e.target.classList;
+        filterFieldControl(pin, uiSelectors.genderList);
+    };
+
+    // toggle Filter Board function
     const toggleFilterBoard = function(e) {
         e.preventDefault();
         let pin = e.target.classList;
@@ -122,7 +187,7 @@ const Controller = (function(UI, Logic, Database) {
         }
     };
 
-    // toggleSearchBtnFilter funtion
+    // toggle Search Btn Filter funtion
     const toggleSearchBtnFilter = function(e) {
         e.preventDefault();
         let pin = e.target.classList;
@@ -142,7 +207,7 @@ const Controller = (function(UI, Logic, Database) {
 
     };
 
-    // toggleNotifyBar function
+    // toggle Notify Bar function
     const toggleNotifyBar = function(e) {
         let pin = e.target.classList;
         // console.log(pin);
