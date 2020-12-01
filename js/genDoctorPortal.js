@@ -31,16 +31,15 @@ const UI = (function() {
       hiddenFilterBoard: '.hidden-filter-search-board',
       genderFieldBtn: '.gender-field-btn',
       ageFieldBtn: '.age-field-btn',
-      heightFieldBtn: '.height-field-btn',
-      weightFieldBtn: '.weight-field-btn',
-      bloodFieldBtn: '.blood-field-btn',
-      genotypeFieldBtn: '.genotype-field-btn',
+      wardFieldBtn: '.ward-field-btn',
+      dateAddFieldBtn: '.date-field-btn',
       genderList: '.gender-list',
       ageList: '.age-list',
-      heightList: '.height-list',
-      weightList: '.weight-list',
-      bloodList: '.blood-list',
-      genotypelist: '.genotype-list',
+      wardList: '.ward-list',
+      dateList: '.date-list',
+      searchByCheckBox: '.search-checkbox',
+      genderFilterBox: '.gender-filter',
+      ageFilterBox: '.age-filter',
     };
 
     // PUBLIC METHOD
@@ -50,23 +49,21 @@ const UI = (function() {
           return UISelector;
       },
 
+      // FUNCTION TO OPEN THE FILTER BOARD ACCORDION
       openAccordion: function(field) {
         if(field === '.gender-list') {
             document.querySelector(field).style.height = `75px`;
         } else if (field === '.age-list') {
             document.querySelector(field).style.height = `150px`; 
-        } else if (field === '.height-list') {
-            document.querySelector(field).style.height = `220px`; 
-        } else if (field === '.weight-list') {
-            document.querySelector(field).style.height = `220px`;  
-        } else if (field === '.blood-list') {
-            document.querySelector(field).style.height = `150px`;
-        } else if (field === '.genotype-list') {
+        } else if (field === '.ward-list') {
             document.querySelector(field).style.height = `110px`; 
+        } else if (field === '.date-list') {
+            document.querySelector(field).style.height = `50px`; 
         }
        
       },
 
+      // FUNCTION TO CLOSE THE FILTER BOARD ACCORDION
       closeAccordion: function(field) {
           document.querySelector(field).style.height = `1px`;
       },
@@ -92,6 +89,7 @@ const UI = (function() {
 
 // MODULE TO ACT AS CENTRAL CONTROL FOR OTHER MODULES
 const Controller = (function(UI, Logic, Database) {
+    // VARIABLES HOLDING ACCES TO OTHER CODE MUDLE PUBLIC FUNCTION
     let uiSelectors = UI.getUiSelectors();
     let log = Logic;
     let db = Database;
@@ -100,22 +98,83 @@ const Controller = (function(UI, Logic, Database) {
     const loadEventLitners = function() {
         // LISTNER FOR NOTIFIICATION BELL
         document.querySelector(uiSelectors.notificationBell).addEventListener('click', toggleNotifyBar);
+
         // LISTNER FOR THE SEARCH TYPE BUTTON
         document.querySelector(uiSelectors.searchBtnType).addEventListener('click', toggleSearchBtnFilter);
+
         // LISTNER FOR THE FILTER SEARCH BUTTON
         document.querySelector(uiSelectors.filterSearchBtn).addEventListener('click', toggleFilterBoard);
+
         // LISTNER FOR GENDER FIELD ACCORDION BUTTON
         document.querySelector(uiSelectors.genderFieldBtn).addEventListener('click', toggleGenderField);
+
         // LISTNER FOR AGE FIELD ACCORDION BUTTON
         document.querySelector(uiSelectors.ageFieldBtn).addEventListener('click', toggleAgeField);
-        // LISTNER FOR HEIGHT FIELD ACCORDION BUTTON
-        document.querySelector(uiSelectors.heightFieldBtn).addEventListener('click', toggleHeightField);
-        // LISTNER FOR WEIGHT FIELD ACCORDION BUTTON
-        document.querySelector(uiSelectors.weightFieldBtn).addEventListener('click', toggleWeightField);
-        // LISTNER FOR BLOOD FIELD ACCORDION BUTTON
-        document.querySelector(uiSelectors.bloodFieldBtn).addEventListener('click', toggleBloodField);
-        // LISTNER FOR GENOTYPE FIELD ACCORDION BUTTON
-        document.querySelector(uiSelectors.genotypeFieldBtn).addEventListener('click', toggleGenotypeField);
+
+        // LISTNER FOR WARD FIELD ACCORDION BUTTON
+        document.querySelector(uiSelectors.wardFieldBtn).addEventListener('click', toggleWardField);
+
+        // LISTNER FOR DATE OF ADMMISION BUTTON
+        document.querySelector(uiSelectors.dateAddFieldBtn).addEventListener('click', toggleDateAddField);
+
+        // LISTNER FOR THE SEARCH BY BUTTON
+        document.querySelectorAll(uiSelectors.searchByCheckBox).forEach(cur => {
+            cur.addEventListener('click', searchByOrFilter);
+        });
+        
+        // LISTNER FOR THE GENDER CHECKBOX 
+        document.querySelectorAll(uiSelectors.genderFilterBox).forEach((cur) => {
+           cur.addEventListener('click', searchByOrFilter);
+        });
+
+        // LISTNER FOR THE AGE CHECKBOX
+        document.querySelectorAll(uiSelectors.ageFilterBox).forEach((cur) => {
+           cur.addEventListener('click', searchByOrFilter);
+        });
+    };
+
+    // function to cancel any other selected option
+    const cancelAnyOtherOption = function(className, category) {
+        if(category === 'searchBox') {
+            document.querySelectorAll(uiSelectors.searchByCheckBox).forEach((cur) => {
+                if(cur.classList[0] !== className) {
+                    cur.checked = false;
+                   // console.log('not it');
+                }
+          }); 
+        } else if (category === 'genderBox') {
+            document.querySelectorAll(uiSelectors.genderFilterBox).forEach((cur) => {
+                if(cur.classList[0] !== className) {
+                    cur.checked = false;
+                   // console.log('not it');
+                }
+          });  
+        } else if (category === 'ageBox') {
+            document.querySelectorAll(uiSelectors.ageFilterBox).forEach((cur) => {
+                if(cur.classList[0] !== className) {
+                    cur.checked = false;
+                   // console.log('not it');
+                }
+          }); 
+        }
+   
+    };
+
+    // search by function 
+    const searchByOrFilter = function(e) {
+        // do some thing, happens first ..
+        // then call a function to cancel any other selected option
+        let pin = e.target.classList[0];
+        let pin2 = e.target.classList;
+
+        if(pin2.contains('search-checkbox')) {
+            cancelAnyOtherOption(pin, 'searchBox');
+        } else if (pin2.contains('gender-filter')) {
+            cancelAnyOtherOption(pin, 'genderBox');
+        }else if (pin2.contains('age-filter')) {
+            cancelAnyOtherOption(pin, 'ageBox');
+        }
+        
     };
 
     // filter field control function
@@ -129,32 +188,18 @@ const Controller = (function(UI, Logic, Database) {
         }
     };
 
-    // toggle genotype field funtion
-    const toggleGenotypeField = function(e) {
-        e.preventDefault;
-        let pin = e.target.classList;
-        filterFieldControl(pin, uiSelectors.genotypelist);
-    }
-
-    // toggle blood field funtion 
-    const toggleBloodField = function(e) {
+     // toggle date of addmision field function
+     const toggleDateAddField = function(e) {
         e.preventDefault();
         let pin = e.target.classList;
-        filterFieldControl(pin, uiSelectors.bloodList);
+        filterFieldControl(pin, uiSelectors.dateList);
     };
 
-    // toggle weight field function 
-    const toggleWeightField = function(e) {
+    // toggle ward field function
+    const toggleWardField = function(e) {
         e.preventDefault();
         let pin = e.target.classList;
-        filterFieldControl(pin, uiSelectors.weightList);
-    };
-
-    // toggle height field function
-    const toggleHeightField = function(e) {
-        e.preventDefault();
-        let pin = e.target.classList;
-        filterFieldControl(pin, uiSelectors.heightList);
+        filterFieldControl(pin, uiSelectors.wardList);
     };
 
     // toggle Age field function 
