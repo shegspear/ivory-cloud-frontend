@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ivory Cloud</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="style4.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-link active text about" href="#">About</a>
+    <a class="nav-link text" href="#">Pricing</a>
+    <a class="nav-link text" href="#">Contact</a>
+    <a class="nav-link ivory" href="#"><img class="cloud"src="Images/Cloud.png">
+      <span class="vec"><img src="Images/Vector.png"></span>IvoryCloud
+    </a>
+    <a class="nav-link push text btn-primary" href="#">Login</a>
+    <a class="nav-link push2 text btn-primary bt2" href="signup2.html">Sign up</a>
+
+  </nav>
+  <div class="container">
+    <div class="row">
+    <div class="col col-md-6">
+      <div class="left-side">
+        <img class="emg" src="Images/Saly-1.png" alt="">
+        <p class="para">Gain fast and easy access to patient database</p>
+        <img class="emg2" src="Images/Saly-12.png" alt="">
+        <p class="para2">Track and manage medical records with ease</p>
+        <img class="emg3" src="Images/Saly-16.png" alt="">
+        <p class="para3">Read and edit patient records fast</p>
+        <div id="container">
+            <div id="circle">
+                <div id="small-circle">
+                      </div>
+                  </div>
+                </div>
+      </div>
+    </div>
+    <div class="col col-md-6">
+      <i class="fa fa-angle-left" aria-hidden="true"><a href="index.html" class="back">Back</a></i>
+      <h3 class="register">login</h3>
+      <!-- <p  class="purpose">For the purpose of industry regulation, your details are required.</p> -->
+      <hr>
+      <form action="/action_page.php" target="_blank" method="post" class="form needs-validation" novalidate>
+       <div class="col-md-12 mb-12">
+       <label for="validationCustom02" class="email-label">Email Adress*</label>
+       <input type="text" class="form-control shift2" id="validationCustom02" placeholder="Enter email adress" required>
+        <div class="valid-feedback">
+        Looks good!
+        </div>
+    </div>
+  <div class="form-row">
+    <div class="col-md-12 mb-12">
+      <label for="validationCustom03 shifted">Create password*</label>
+      <input type="text" class="form-control shift-d" id="validationCustom03" placeholder="Enter password" required>
+      <span class="span-eye"><i class="fa fa-eye" id="eye" aria-hidden="true" onclick="toggle()"></i></span>
+      <div class="invalid-feedback">
+        Please provide a valid password.
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+      <label class="form-check-label" for="invalidCheck">
+        I agree to terms and conditions
+      </label>
+      <div class="invalid-feedback">
+        You must agree before submitting.
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary submit" type="submit"><a class="submit2" href="">login</a></button>
+  <p class="safely"><i class="fa fa-lock" aria-hidden="true"></i>Your info is safely secured</p>
+</form>
+
+    </div>
+    </div>
+    </div>
+    <script>
+    	var state= false;
+    	function toggle(){
+    		if(state){
+    			document.getElementById("password").setAttribute("type", "password");
+    			document.getElementById("eye").style.color='#7a797e';
+    			state = false;
+    		}
+    		else{
+    			document.getElementById("password").setAttribute("type", "text");
+    			document.getElementById("eye").style.color='#5587ef';
+    			state = true;
+    		}
+    	}
+    </script>
+</body>
+</html>
