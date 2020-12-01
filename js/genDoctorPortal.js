@@ -40,6 +40,11 @@ const UI = (function() {
       searchByCheckBox: '.search-checkbox',
       genderFilterBox: '.gender-filter',
       ageFilterBox: '.age-filter',
+      wardFilterBox: '.ward-filter',
+      accordionFieldBtn: '.accordion-btn',
+      resetFilterFieldBtn: '.reset-filter',
+      filterFieldCheckBoxes: '.my-checkbox',
+      dateInput: '#date-input',
     };
 
     // PUBLIC METHOD
@@ -47,6 +52,58 @@ const UI = (function() {
       // FUNCTION RETUNRS ALL AVAILABLE CLASSES AND ID'S
       getUiSelectors: function() {
           return UISelector;
+      },
+
+      // FUNCTION TO CLEAR DUPLICATE SECTION
+      clearDuplicateSelections: function(className, category) {
+        if(category === 'searchBox') {
+            document.querySelectorAll(UISelector.searchByCheckBox).forEach((cur) => {
+                if(cur.classList[0] !== className) {
+                    cur.checked = false;
+                   // console.log('not it');
+                }
+          }); 
+        } else if (category === 'genderBox') {
+            document.querySelectorAll(UISelector.genderFilterBox).forEach((cur) => {
+                if(cur.classList[0] !== className) {
+                    cur.checked = false;
+                   // console.log('not it');
+                }
+          });  
+        } else if (category === 'ageBox') {
+            document.querySelectorAll(UISelector.ageFilterBox).forEach((cur) => {
+                if(cur.classList[0] !== className) {
+                    cur.checked = false;
+                   // console.log('not it');
+                }
+          }); 
+        } else if (category === 'wardBox') {
+            document.querySelectorAll(UISelector.wardFilterBox).forEach((cur) => {
+                if(cur.classList[0] !== className) {
+                    cur.checked = false;
+                   // console.log('not it');
+                }
+          }); 
+        }
+      },
+
+      // FUCNTION TO RESET FILTER FIELD
+      clearFilters: function(selectors, dateInput) {
+         document.querySelectorAll(selectors).forEach((cur) => {
+              cur.checked = '';
+         });
+         
+         document.querySelector(dateInput).value = '';
+      },
+
+      // FUNCTION TO CLOSE EXCESS ACCORDION FIELDS
+      closeExcessAccordions: function(selector) {
+          let arr = ['.gender-list', '.age-list', '.ward-list', '.date-list'];
+          arr.forEach((cur) => {
+              if(cur !== selector) {
+                  document.querySelector(cur).style.height = `1px`;
+              }
+          });
       },
 
       // FUNCTION TO OPEN THE FILTER BOARD ACCORDION
@@ -131,33 +188,25 @@ const Controller = (function(UI, Logic, Database) {
         document.querySelectorAll(uiSelectors.ageFilterBox).forEach((cur) => {
            cur.addEventListener('click', searchByOrFilter);
         });
+
+        // LISTENER FOR THE WARD CHECKBOX
+        document.querySelectorAll(uiSelectors.wardFilterBox).forEach((cur) => {
+           cur.addEventListener('click', searchByOrFilter);
+        });
+
+        // LISTNER FOR THE CLEAR ALL FILTER FEILD BUTTON
+        document.querySelector(uiSelectors.resetFilterFieldBtn).addEventListener('click', clearFilterFields); 
+
+    };
+
+    // function to clear all filter fields 
+    const clearFilterFields = function() {
+         UI.clearFilters(uiSelectors.filterFieldCheckBoxes, uiSelectors.dateInput); 
     };
 
     // function to cancel any other selected option
     const cancelAnyOtherOption = function(className, category) {
-        if(category === 'searchBox') {
-            document.querySelectorAll(uiSelectors.searchByCheckBox).forEach((cur) => {
-                if(cur.classList[0] !== className) {
-                    cur.checked = false;
-                   // console.log('not it');
-                }
-          }); 
-        } else if (category === 'genderBox') {
-            document.querySelectorAll(uiSelectors.genderFilterBox).forEach((cur) => {
-                if(cur.classList[0] !== className) {
-                    cur.checked = false;
-                   // console.log('not it');
-                }
-          });  
-        } else if (category === 'ageBox') {
-            document.querySelectorAll(uiSelectors.ageFilterBox).forEach((cur) => {
-                if(cur.classList[0] !== className) {
-                    cur.checked = false;
-                   // console.log('not it');
-                }
-          }); 
-        }
-   
+         UI.clearDuplicateSelections(className, category);
     };
 
     // search by function 
@@ -173,18 +222,26 @@ const Controller = (function(UI, Logic, Database) {
             cancelAnyOtherOption(pin, 'genderBox');
         }else if (pin2.contains('age-filter')) {
             cancelAnyOtherOption(pin, 'ageBox');
+        } else if (pin2.contains('ward-filter')) {
+            cancelAnyOtherOption(pin, 'wardBox');
         }
         
     };
 
+    // handle excess open filter fields 
+    const handleExcessOpenAccordions = function(classlist, selector) {
+        UI.closeExcessAccordions(selector);
+    };
+
     // filter field control function
-    const filterFieldControl = function(pin, selector) {
-        if(pin.contains('open')) {
+    const filterFieldControl = function(classlist, selector) {
+        if(classlist.contains('open')) {
             UI.openAccordion(selector);
-            pin.remove('open');
+            classlist.remove('open');
+            handleExcessOpenAccordions(classlist, selector);
         } else {
             UI.closeAccordion(selector);
-            pin.add('open');
+            classlist.add('open');
         }
     };
 

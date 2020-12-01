@@ -266,6 +266,14 @@ body {
 
 /* HIDDEN NOTIFICATION BOARD */
 
+.reset-filter{
+    color: grey;
+}
+
+.reset-filter:hover {
+    color: red;
+}
+
 .hidden-notification-board {
     /* border: 1px solid black; */
     width: 400px;
