@@ -266,6 +266,14 @@ body {
 
 /* HIDDEN NOTIFICATION BOARD */
 
+.reset-filter{
+    color: grey;
+}
+
+.reset-filter:hover {
+    color: red;
+}
+
 .hidden-notification-board {
     /* border: 1px solid black; */
     width: 400px;
@@ -369,10 +377,8 @@ body {
 
 .gender-field-btn,
 .age-field-btn,
-.height-field-btn,
-.weight-field-btn,
-.blood-field-btn,
-.genotype-field-btn {
+.ward-field-btn,
+.date-field-btn {
     border: 2px solid black;
     background-color: #fff;
     border-radius: 50px;
@@ -386,10 +392,8 @@ body {
 
 .gender-list,
 .age-list,
-.height-list,
-.weight-list,
-.blood-list,
-.genotype-list {
+.ward-list,
+.date-list {
     /* border: 1px solid black; */
     width: 100%;
     height: 1px;
@@ -401,10 +405,8 @@ body {
 
 .gender-list-item,
 .age-list-item,
-.height-list-item,
-.weight-list-item,
-.blood-list-item,
-.genotype-list-item {
+.ward-list-item,
+.date-list-item {
     margin: 5px 0;
     display: flex;
     flex-direction: row;
@@ -414,6 +416,7 @@ body {
 .my-checkbox {
     width: 20px;
     height: 20px;
+    cursor: pointer;
 }
 
 /*CODES FOR THE FOOTER*/
