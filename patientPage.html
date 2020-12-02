@@ -111,14 +111,14 @@
 </section>
 <section class=" p-table container">
   
-  <table class="table shadow table-hover">
+  <table class="table shadow table-hover" id="p-table">
     <thead>
         <tr class="d-flex nb-table">
             <th class="col-3">Visit Activity</th>
             <th class="col-2"></th>
             <th class="col-2"></th>
             <th class="col-2"></th>
-            <th class="col-3">NEW VISIT <button class="plus-icon"><i class="fa far fa-plus-square"></i></button> 
+            <th class="col-3">NEW VISIT <button class="plus-icon" id="add-button"><i class="fa far fa-plus-square"></i></button> 
             </th>
         </tr>
         <tr class="d-flex thead-light">
@@ -131,7 +131,7 @@
             <th class="col-3">Email</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="table-body">
         <tr class="d-flex">
             <td class="col-sm-3"> <div class="p-avatar2">
               <span><img class="doctor-profile-pic" src="./assets/doctor-avatar/doc-avatar.jpg" alt="doctor picture"></span> 
@@ -252,5 +252,22 @@
   
 
 </footer>
+<div id="create-appointment-modal" class="modal-container">
+  <div class="modal-card">
+    <span id="close">
+    <i class="fa fa-close"></i>
+
+    </span>
+    <h3>Enter patient information</h3>
+    <form name="test" id="create-appointment-form">
+      <input name="doctorName" required type="text" placeholder="Doctor's name">
+      <input name="conditions" required type="text" placeholder="Conditions">
+      <input name="appointmentDate" required type="datetime-local" placeholder="Visit Time">
+      <input name="email" required type="email" placeholder="Email">
+      <button>Save</button>
+    </form>
+  </div>
+</div>
+<script src="./js/patientPage.js"></script>
 </body>
 </html>
