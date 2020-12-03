@@ -20,7 +20,7 @@
     <a class="nav-link push2 text btn-primary bt2" href="signup2.html">Sign up</a>
 
   </nav>
-  <div class="container">
+  <div class="full-width">
     <div class="row">
     <div class="col col-md-6">
       <div class="left-side">
@@ -45,41 +45,41 @@
       <h3 class="register">Complete Your profile!</h3>
       <p  class="purpose">For the purpose of industry regulation, your details are required.</p>
       <hr>
-      <form action="/action_page.php" target="_blank" method="post" class="form needs-validation" novalidate>
+      <form action="/action_page.php" name="regForm" method="post" class="form needs-validation"  onsubmit="return validate()">
   <div class="form-row">
     <div class="col-md-12 mb-15">
       <label class="position" for="position">Position*</label>
-      <select id="specialty" class="form-control shift2"required>
-        <option value="Doctor">Doctor</option>
-        <option value="One">One</option>
-        <option value="Two">Two</option>
-        <option value="Three">Three</option>
-        <option value="Four">Four</option>
-        <option value="Five">Five</option>
+      <select id="position" class="form-control shift2">
+        <option class="select" value="select position">select position</option>
+        <option value="nurse">Nurse</option>
+        <option value="lab attendant">Lab Attendant</option>
+        <option value="lorem">Lorem</option>
+        <option value="ipsum">Ipsum</option>
+        <option value="dolor">Dolor</option>
       </select>
-      <div class="valid-feedback">
+      <!-- <div class="valid-feedback">
         Looks good!
-      </div>
+      </div> -->
     </div>
     <div class="col-md-12 mb-12">
-      <label for="specialty" class="special">Specialty*</label>
-      <select id="specialty" class="form-control shift2"required>
-        <option class="opt"value="Optician">Optician</option>
-        <option value="One">One</option>
-        <option value="Two">Two</option>
-        <option value="Three">Three</option>
-        <option value="Four">Four</option>
-        <option value="Five">Five</option>
+      <label for="specialty" class="specialty">Specialty*</label>
+      <select id="specialty" class="form-control shift2">
+        <option class="opt"value="select specialty">select specialty</option>
+        <option value="Gynaecologist">Gynaecologist</option>
+        <option value="pediatrician">pediatrician</option>
+        <option value="lorem">Lorem</option>
+        <option value="ipsum">Ipsum</option>
+        <option value="dolor">Dolor</option>
       </select>
-      <div class="valid-feedback">
+      <!-- <div class="valid-feedback">
         Looks good!
-      </div>
+      </div> -->
     </div>
  
   </div>
   <div class="col-md-12 div-phone">
   <label class="num">Phone number*</label>
-    <input type="tel" class="form-control phone">
+    <input type="tel" class="form-control phone" id="number">
   </div>
   <br>
   <!-- <div class="input-group">
@@ -88,13 +88,13 @@
   </div> -->
   <div class="form-group">
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+      <input class="form-check-input" type="checkbox" value="" id="formcheck">
       <label class="form-check-label lab-text" for="invalidCheck">
         I agree to terms and conditions
       </label>
-      <div class="invalid-feedback">
+      <!-- <div class="invalid-feedback">
         You must agree before submitting.
-      </div>
+      </div> -->
     </div>
   </div>
   <button class="btn btn-primary submit" type="submit"><a class="submit2" href="">Save & Continue</a></button>
@@ -104,5 +104,30 @@
     </div>
     </div>
     </div>
+    <script>
+      function validate() {
+			var position=document.getElementById('position').value;
+			var specialty=document.getElementById('specialty').value;
+			var number=document.forms["regForm"] ["number"].value;
+			var formcheck=document.getElementById("formcheck").checked;
+
+			if(position=="select position") {
+				alert("Please select an option for your position");
+				return false;
+			}
+			else if(position=="select specialty") {
+				alert("Please select an option for your position");
+				return false;
+			}
+			else if(number==null||number=="") {
+				alert("please input your phone number");
+				return false;
+			}
+			else if((formcheck=="")) {
+				alert("please agree to the terms and conditions to proceed");
+				return false;
+			}
+		}
+    </script>
 </body>
 </html>
