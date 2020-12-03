@@ -45,6 +45,7 @@ const UI = (function() {
       resetFilterFieldBtn: '.reset-filter',
       filterFieldCheckBoxes: '.my-checkbox',
       dateInput: '#date-input',
+      searchBtnTitle: '.search-btn-title',
     };
 
     // PUBLIC METHOD
@@ -123,6 +124,12 @@ const UI = (function() {
       // FUNCTION TO CLOSE THE FILTER BOARD ACCORDION
       closeAccordion: function(field) {
           document.querySelector(field).style.height = `1px`;
+      },
+
+      changeNameOfSearchBtn: function(selector, searchName) {
+          document.querySelector(selector).textContent = `${searchName}`;
+        // console.log(selector);
+        // console.log(searchName);
       },
 
       // FUNCTION CLOSES DESIGNATED DIV'S
@@ -217,7 +224,10 @@ const Controller = (function(UI, Logic, Database) {
         let pin2 = e.target.classList;
 
         if(pin2.contains('search-checkbox')) {
+            let searchByName = e.target.parentElement.children[1].textContent;
+            console.log(searchByName);
             cancelAnyOtherOption(pin, 'searchBox');
+            UI.changeNameOfSearchBtn(uiSelectors.searchBtnTitle, searchByName);
         } else if (pin2.contains('gender-filter')) {
             cancelAnyOtherOption(pin, 'genderBox');
         }else if (pin2.contains('age-filter')) {
@@ -294,6 +304,8 @@ const Controller = (function(UI, Logic, Database) {
         e.preventDefault();
         let pin = e.target.classList;
         let pin2 = e.target.children[0].classList;
+        // console.log(pin)
+        // console.log(pin2)
 
         if(pin.contains('active')) {
             UI.openBar(uiSelectors.searchBtnTypeFilter);
