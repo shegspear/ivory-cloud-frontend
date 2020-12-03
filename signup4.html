@@ -19,7 +19,7 @@
     <a class="nav-link push2 text btn-primary bt2" href="signup2.html">Sign up</a>
 
   </nav>
-  <div class="container">
+  <div class="full-width">
     <div class="row">
     <div class="col col-md-6">
       <div class="left-side">
@@ -42,33 +42,33 @@
       <h3 class="register">login</h3>
       <!-- <p  class="purpose">For the purpose of industry regulation, your details are required.</p> -->
       <hr>
-      <form action="/action_page.php" target="_blank" method="post" class="form needs-validation" novalidate>
+      <form action="/action_page.php" name="regForm" method="post" class="form needs-validation" onsubmit="return validateForm()">
        <div class="col-md-12 mb-12">
-       <label for="validationCustom02" class="email-label">Email Adress*</label>
-       <input type="text" class="form-control shift2" id="validationCustom02" placeholder="Enter email adress" required>
-        <div class="valid-feedback">
+       <label for="emailaddress" class="email-label">Email Adress*</label>
+       <input type="text" class="form-control shift2" id="emailaddress" placeholder="Enter email adress">
+        <!-- <div class="valid-feedback">
         Looks good!
-        </div>
+        </div> -->
     </div>
   <div class="form-row">
     <div class="col-md-12 mb-12">
-      <label for="validationCustom03 shifted">Create password*</label>
-      <input type="text" class="form-control shift-d" id="validationCustom03" placeholder="Enter password" required>
+      <label for="password">Create password*</label>
+      <input type="text" class="form-control shift-d" id="password" placeholder="Enter password">
       <span class="span-eye"><i class="fa fa-eye" id="eye" aria-hidden="true" onclick="toggle()"></i></span>
-      <div class="invalid-feedback">
+      <!-- <div class="invalid-feedback">
         Please provide a valid password.
-      </div>
+      </div> -->
     </div>
   </div>
   <div class="form-group">
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-      <label class="form-check-label" for="invalidCheck">
+      <input class="form-check-input" type="checkbox" value="" id="formcheck">
+      <label class="form-check-label" for="formcheck">
         I agree to terms and conditions
       </label>
-      <div class="invalid-feedback">
+      <!-- <div class="invalid-feedback">
         You must agree before submitting.
-      </div>
+      </div> -->
     </div>
   </div>
   <button class="btn btn-primary submit" type="submit"><a class="submit2" href="">login</a></button>
@@ -92,6 +92,25 @@
     			state = true;
     		}
     	}
+      function validateForm() {
+			var emailaddress=document.forms["regForm"] ["emailaddress"].value;
+			var password=document.forms["regForm"] ["password"].value;
+			var formcheck=document.getElementById("formcheck").checked;
+
+
+			if(emailaddress==null||emailaddress=="") {
+				alert("email adress cannot be blank");
+				return false;
+			}
+			else if(password==null||password=="") {
+				alert("password cannot be blank");
+				return false;
+			}
+			else if((formcheck=="")) {
+				alert("please agree to the terms and conditions to proceed");
+				return false;
+			}
+		}
     </script>
 </body>
 </html>
