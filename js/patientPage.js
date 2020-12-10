@@ -656,9 +656,9 @@ const UI = (function() {
                     Doctor
                   </button>
 
-                  <!-- <button class="pharm-state-btn btn  mx-2 px-4 py-2">
+                  <button class="pharm-state-btn btn  mx-2 px-4 py-2">
                   Pharmacist
-                </button> -->
+                </button>
       
               </div>
       
@@ -726,9 +726,9 @@ const UI = (function() {
                   Doctor
                 </button>
       
-                <!-- <button class="pharm-state-btn btn  mx-2 px-4 py-2">
+                <button class="pharm-state-btn btn  mx-2 px-4 py-2">
                   Pharmacist
-                </button> -->
+                </button>
       
             </div>
       
@@ -776,6 +776,84 @@ const UI = (function() {
           </section>
         `;
       };
+
+      // GENRAL PHARMACY STATE -> PHARMACIST
+      const pharmStatePharm = function() {
+        document.querySelector(UISelector.rootHead).innerHTML = headTab;
+
+        document.querySelector(UISelector.rootBody).innerHTML = `
+            <!-- CODES FOR CONTAINER TWELVE PHARM STATE -> DOCTOR-->
+            <section class="cont-12 container my-5">
+                      
+            <div class="d-flex flex-row justify-content-evenly ml-5">
+      
+                <button class="nurse-pharm-state-btn btn mr-2 px-4 py-2">
+                  Nurse
+                </button>
+      
+                <button class="doctor-pharm-state-btn btn mx-2 px-4 py-2">
+                  Doctor
+                </button>
+      
+                <button class="pharm-state-btn btn pharm-state-btn-active mx-2 px-4 py-2">
+                  Pharmacist
+                </button>
+      
+            </div> 
+      
+            <div class="pharm-pharm-note pharm-state-note p-5 ">
+              <form>
+      
+                <div class="form-group presc">
+                  <label for="drug search">Search Drug</label>
+                  <input type="search" class="form-control search-drug" id="search-drug" aria-describedby="pharmacist prescription">
+                </div>
+      
+                <div class="status-cont d-flex flex-row justify-content-start">
+      
+                  <div class="form-group presc">
+                    <label for="Drug status">Drug availability status</label>
+                    <output type="text" class="form-control drug-status" id="drug-status" aria-describedby="drug status">
+                  </div>
+      
+                  <div class="form-group presc ml-5">
+                    <label for="drug count">Drug count</label>
+                    <input type="text" class="form-control drug-count" id="drug-count" aria-describedby="drug amount">
+                  </div>
+                  
+                </div>
+      
+                <div class="form-group presc-note">
+                  <label for="pharmacist prescription note">Enter Note</label>
+                  <textarea class="form-control presc-note" name="pharm-presc-note" id="pharm-presc-note" cols="30" rows="10"></textarea>
+                </div>
+      
+                <div class="period-cont d-flex flex-row justify-content-start">
+      
+                  <div class="form-group presc">
+                    <label for="pharmacist prescription date">Enter Date</label>
+                    <input type="date" class="form-control presc-date" id="pharm-presc-date" aria-describedby="pharmacist prescription date">
+                  </div>
+      
+                  <div class="form-group presc ml-5">
+                    <label for="pharmacist prescription time">Enter Time</label>
+                    <input type="time" class="form-control presc-time" id="pharm-presc-time" aria-describedby="pharmacist prescription time">
+                  </div>
+                  
+                </div>
+      
+                <div class="button-cont d-flex flex-row justify-content-between">
+                <button class="btn btn-info dispense-drug-btn px-5">Dispense</button>
+      
+                <!-- <button class="btn btn-light border border-dark create-new-presc">Create new prescription <i class="fa fa-pencil"></i> </button> -->
+                </div>
+      
+              </form>
+            </div>
+      
+          </section>
+        `;
+      }
 
       // GENRAL WARD STATE
       const wardState = function() {
@@ -1207,6 +1285,11 @@ const UI = (function() {
                const page = new PageState();
                page.change(new wardStateSpecific);
 
+           } else if (state == 'pharmStatePharm') {
+                // fucntion to setup pharmacy state pharmacist
+                const page = new PageState();
+                page.change(new pharmStatePharm);
+
            }
 
 
@@ -1311,6 +1394,9 @@ const Controller = (function(UI, Logic) {
 
          } else if (point.classList.contains('specific-ward')) {
             ui.getMyState('wardStateSpe');
+
+         } else if (point.classList.contains('pharm-state-btn')) {
+            ui.getMyState('pharmStatePharm');
 
          }
       };
