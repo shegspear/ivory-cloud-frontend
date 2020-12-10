@@ -395,6 +395,10 @@ body {
     justify-content: center;
     align-content: center;
     padding: 6px;
+    background-image: url(../assets/icons/chevron_down_26px.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .gender-list,
